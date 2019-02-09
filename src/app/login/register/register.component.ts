@@ -28,8 +28,8 @@ export class RegisterComponent implements OnInit {
   }
 
   register(registerForm: LoginModel) {
-    this.auth.register(registerForm.email, registerForm.password).subscribe(result => {
-      console.log(result);
+    this.auth.register(registerForm.email, registerForm.password).subscribe(() => {
+      this.router.navigate(['profile']);
     }, error => {
       console.log(error);
     });

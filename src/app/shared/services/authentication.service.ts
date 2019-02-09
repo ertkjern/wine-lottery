@@ -30,7 +30,6 @@ export class AuthenticationService {
 
   logout() {
     this.fb.auth.signOut();
-    this.router.navigate(['login']);
   }
 
   resetPassword(email: string): Observable<any> {
@@ -41,8 +40,18 @@ export class AuthenticationService {
     return this.user;
   }
 
-  isAuthenticated(): Observable<any> {
-        return from(this.fb.authState);
+  isAuthenticated(): Promise<boolean> {
+    return new Promise(
+      resolve => {
+        this.fb.authState.subscribe(result => {
+          if (result && result.uid) {
+            resolve(true);
+          } else {
+            resolve(false);
+          }
+        });
+      }
+    );
   }
 
 

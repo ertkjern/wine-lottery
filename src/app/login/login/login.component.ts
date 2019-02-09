@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ValidationService} from '../shared/services/validation.service';
-import {LoginModel} from '../shared/models/login.model';
-import {AuthenticationService} from '../shared/services/authentication.service';
+import {ValidationService} from '../../shared/services/validation.service';
+import {LoginModel} from '../../shared/models/login.model';
+import {AuthenticationService} from '../../shared/services/authentication.service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -18,6 +18,9 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.setupForm();
+    if (this.auth.isLoggedIn()) {
+      this.router.navigate(['profile']);
+    }
   }
 
   private setupForm() {
@@ -29,7 +32,7 @@ export class LoginComponent implements OnInit {
 
   login(loginForm: LoginModel) {
     this.auth.login(loginForm.email, loginForm.password).subscribe(result => {
-      console.log(result);
+      this.router.navigate(['profile']);
     }, error => {
       console.log(error);
     });
