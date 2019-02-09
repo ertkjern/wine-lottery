@@ -24,7 +24,7 @@ export class AuthenticationService {
     return from(this.fb.auth.signInWithEmailAndPassword(email, password));
   }
 
-  register(email: string, password: string, username: string, name: string): Observable<any> {
+  register(email: string, password: string): Observable<any> {
     return from(this.fb.auth.createUserWithEmailAndPassword(email, password));
   }
 
