@@ -12,7 +12,7 @@
       <div class="error"><span *ngIf="password.invalid && (password.dirty || password.touched)" translate>Password required</span></div>
     </div>
     <button type="submit">Logg inn</button>
-    <button type="button">Ny bruker</button>
+    <button type="button" (click)="registerUser()">Ny bruker</button>
   </form>
 
 </div>
