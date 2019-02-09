@@ -1,0 +1,18 @@
+<div class="lottery-login">
+  <h2>Logg inn</h2>
+  <form (ngSubmit)="login(loginForm.value)" [formGroup]="loginForm" novalidate>
+    <div class="lottery-input">
+      <label for="email">Email</label>
+      <input id="email" type="email" placeholder="Epost" autocomplete="username" formControlName="email">
+      <div class="error"><span *ngIf="email.invalid && (email.dirty || email.touched)" translate>Invalid email</span></div>
+    </div>
+    <div class="lottery-input">
+      <label for="password">Passord</label>
+      <input id="password" type="password" placeholder="Passord" autocomplete="current-password" formControlName="password">
+      <div class="error"><span *ngIf="password.invalid && (password.dirty || password.touched)" translate>Password required</span></div>
+    </div>
+    <button type="submit">Logg inn</button>
+    <button type="button">Ny bruker</button>
+  </form>
+
+</div>
