@@ -1,4 +1,4 @@
-![GCRE](src/assets/images/logo-text-small.png)
+![GCRE](src/assets/images/tiny-logo.png)
 # WineLottery
 
 Register to create a new wine lottery or join an existing lottery. 
