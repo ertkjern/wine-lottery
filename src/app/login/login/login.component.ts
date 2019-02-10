@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ValidationService} from '../../shared/services/validation.service';
 import {LoginModel} from '../../shared/models/login.model';
@@ -13,8 +13,10 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
+  errorMessage: string;
 
-  constructor(private fb: FormBuilder, private router: Router, private validationService: ValidationService, private auth: AuthenticationService) { }
+  constructor(private fb: FormBuilder, private router: Router, private validationService: ValidationService, private auth: AuthenticationService) {
+  }
 
   ngOnInit() {
     this.setupForm();
@@ -31,14 +33,18 @@ export class LoginComponent implements OnInit {
   }
 
   login(loginForm: LoginModel) {
+    this.errorMessage = null;
     this.auth.login(loginForm.email, loginForm.password).subscribe(result => {
       this.router.navigate(['profile']);
     }, error => {
-      console.log(error);
+      if (error.message) {
+        this.errorMessage = error.message;
+      }
     });
   }
 
   registerUser() {
+    this.errorMessage = null;
     this.router.navigate(['register']);
   }
 

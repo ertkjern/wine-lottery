@@ -1,0 +1,59 @@
+@import "mixins";
+@import "variables";
+
+.lottery-input-large {
+  label{
+    margin-top: 10px;
+    display: block;
+    font-size: 22px;
+  }
+  input{
+    @include no-button-styling();
+    width: 100%;
+    font-size: 22px;
+    text-align: center;
+    padding: 5px 5px 5px 5px;
+    height: 45px;
+    border: 1px solid $main-gray;
+    background-color: $form-background;
+  }
+}
+
+.large-button{
+  @include no-button-styling();
+  width: 100%;
+  border: 1px solid $main-gray;
+  padding: 5px 5px 5px 5px;
+  font-size: 22px;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
+
+.lottery-side-by-side{
+  @include no-button-styling();
+  width: 45%;
+  margin-left: 2px;
+  margin-right: 2px;
+  border: 1px solid $main-gray;
+  padding: 5px 5px 5px 5px;
+  font-size: 22px;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
+.positive{
+  background-color: $secondary-pink;
+}
+
+.blue-background{
+  background-color: $blue;
+}
+
+.green-background{
+  background-color: $green;
+}
+
+.white-background{
+  background-color: white;
+}

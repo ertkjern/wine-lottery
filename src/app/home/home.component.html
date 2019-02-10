@@ -1,15 +1,18 @@
 <div class="lottery-home">
-  <div class="lottery-pin">
-    <div class="lottery-input">
-      <label for="pin">Finn ditt lotteri</label>
-      <input id="pin" placeholder="Lotterikode" [(ngModel)]="pin">
+  <div class="container">
+    <div class="lottery-pin">
+      <img class="logo-home" src="./assets/images/logo-text.svg">
+
+      <div class="lottery-input-large">
+        <label for="pin">Finn ditt lotteri</label>
+        <input id="pin" placeholder="id" [(ngModel)]="pin">
+      </div>
+
+      <button class="large-button positive">BLI MED</button>
     </div>
   </div>
-
   <div class="lottery-register">
     <p>Lag ditt eget lotteri <a [href]="'login'">her</a></p>
   </div>
-
 </div>
-
 

@@ -3,9 +3,11 @@ import { CommonModule } from '@angular/common';
 import {ValidationService} from './services/validation.service';
 import {AuthenticationService} from './services/authentication.service';
 import {AuthGuard} from './services/authGuard';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
-  declarations: [],
+  exports: [HeaderComponent],
+  declarations: [HeaderComponent],
   imports: [
     CommonModule
   ],

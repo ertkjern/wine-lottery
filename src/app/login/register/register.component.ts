@@ -13,6 +13,7 @@ import {LoginModel} from '../../shared/models/login.model';
 export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
+  errorMessage: string;
 
   constructor(private fb: FormBuilder, private router: Router, private validationService: ValidationService, private auth: AuthenticationService) { }
 
@@ -28,14 +29,18 @@ export class RegisterComponent implements OnInit {
   }
 
   register(registerForm: LoginModel) {
+    this.errorMessage = null;
     this.auth.register(registerForm.email, registerForm.password).subscribe(() => {
       this.router.navigate(['profile']);
     }, error => {
-      console.log(error);
+      if (error.message) {
+        this.errorMessage = error.message;
+      }
     });
   }
 
   cancel() {
+    this.errorMessage = null;
     this.router.navigate(['login']);
   }
 

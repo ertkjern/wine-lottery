@@ -1,0 +1,19 @@
+@import "../../../../styles/main";
+
+.header-logo{
+  margin-top: 25px;
+  height: 100px;
+  width: auto;
+}
+
+.logout-button{
+  @include no-button-styling();
+  float: right;
+  margin-top: 25px;
+  height: 100px;
+  @include standard-transition();
+  &:hover{
+    @include standard-transition();
+    color: $main-pink;
+  }
+}

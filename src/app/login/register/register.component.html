@@ -1,18 +1,24 @@
-<div class="lottery-login">
-  <h2>Registrer bruker</h2>
-  <form (ngSubmit)="register(registerForm.value)" [formGroup]="registerForm" novalidate>
-    <div class="lottery-input">
-      <label for="email">Email</label>
-      <input id="email" type="email" placeholder="Epost" autocomplete="username" formControlName="email">
-      <div class="error"><span *ngIf="email.invalid && (email.dirty || email.touched)" translate>Invalid email</span></div>
-    </div>
-    <div class="lottery-input">
-      <label for="password">Passord</label>
-      <input id="password" type="password" placeholder="Passord" autocomplete="current-password" formControlName="password">
-      <div class="error"><span *ngIf="password.invalid && (password.dirty || password.touched)" translate>Password required</span></div>
-    </div>
-    <button type="submit">Registrer</button>
-    <button type="button" (click)="cancel()">Avbryt</button>
-  </form>
+<div class="standard-background">
+  <app-header></app-header>
+  <div class="lottery-login">
+    <h2>Registrer bruker</h2>
+    <form (ngSubmit)="register(registerForm.value)" [formGroup]="registerForm" novalidate>
+      <div class="lottery-input-large">
+        <label for="email">Email</label>
+        <input id="email" type="email" placeholder="Epost" autocomplete="username" formControlName="email">
+        <div class="error"><span *ngIf="email.invalid && (email.dirty || email.touched)" translate>Invalid email</span></div>
+      </div>
+      <div class="lottery-input-large">
+        <label for="password">Passord</label>
+        <input id="password" type="password" placeholder="Passord" autocomplete="current-password" formControlName="password">
+        <div class="error"><span *ngIf="password.invalid && (password.dirty || password.touched)" translate>Password required</span></div>
+      </div>
+      <div class="buttons">
+        <button class="lottery-side-by-side green-background" type="submit">Registrer</button>
+        <button class="lottery-side-by-side blue-background" type="button" (click)="cancel()">Avbryt</button>
+      </div>
+      <p *ngIf="errorMessage" class="error margin-top-15">{{errorMessage}}</p>
+    </form>
 
+  </div>
 </div>

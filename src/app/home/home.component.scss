@@ -1,3 +1,27 @@
-.lottery-home {
 
+.lottery-home {
+  height: 100vh;
+  width: 100vw;
+  background-image: linear-gradient(transparent, rgba(228, 17, 112, 0.3)); //if no support for gradient
+
+  .logo-home{
+    text-align: center;
+    height: 125px;
+    width: auto;
+    margin-bottom: 35px;
+  }
+
+  .lottery-pin {
+    width: 350px;
+    margin: auto;
+    padding-top: 15vh;
+    text-align: center;
+  }
+
+  .lottery-register {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    bottom: 0;
+  }
 }
