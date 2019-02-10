@@ -1,4 +1,7 @@
+![GCRE](src/assets/images/logo-text.png)
 # WineLottery
+
+Register to create a new wine lottery or join an existing lottery. 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.6.
 
