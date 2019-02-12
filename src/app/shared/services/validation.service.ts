@@ -17,4 +17,15 @@ export class ValidationService {
     }
     return null;
   }
+
+  dateTimeValidation(control: FormControl) {
+    if (control.value !== '' && !control.value) {
+      return {'incorrectDateTime' : true};
+    }
+    const validDate = new Date(control.value);
+    if (isNaN(validDate.getTime())) {
+      return {'incorrectDateTime' : true};
+    }
+    return null;
+  }
 }

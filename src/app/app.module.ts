@@ -10,6 +10,7 @@ import {environment} from '../environments/environment';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
     SharedModule,
     HomeModule,
     LoginModule,
+    NoopAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

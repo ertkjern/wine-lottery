@@ -1,0 +1,29 @@
+.new-lottery{
+  .new-lottery-form{
+    margin-top: 35px;
+
+    .form-header{
+      margin-bottom: 25px;
+    }
+
+    .form-element{
+      label{
+        display: block;
+      }
+      input{
+        width: 100%;
+        height: 35px;
+        font-size: 18px;
+        padding: 5px 5px 5px 5px;
+      }
+    }
+
+    .submit-section{
+      margin-top: 35px;
+      button{
+        margin-top: 15px;
+      }
+    }
+  }
+
+}

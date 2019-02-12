@@ -4,6 +4,7 @@ import {ValidationService} from './services/validation.service';
 import {AuthenticationService} from './services/authentication.service';
 import {AuthGuard} from './services/authGuard';
 import { HeaderComponent } from './components/header/header.component';
+import {LotteryService} from './services/lottery.service';
 
 @NgModule({
   exports: [HeaderComponent],
@@ -14,6 +15,7 @@ import { HeaderComponent } from './components/header/header.component';
   providers: [
     ValidationService,
     AuthenticationService,
+    LotteryService,
     AuthGuard
   ]
 })

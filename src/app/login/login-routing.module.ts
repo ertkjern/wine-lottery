@@ -4,6 +4,7 @@ import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {ProfileComponent} from './profile/profile.component';
 import {AuthGuard} from '../shared/services/authGuard';
+import {NewLotteryComponent} from './new-lottery/new-lottery.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,11 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'new-lottery',
+    component: NewLotteryComponent,
     canActivate: [AuthGuard],
   }
 ];
