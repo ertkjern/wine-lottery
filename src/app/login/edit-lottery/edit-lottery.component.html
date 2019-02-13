@@ -1,0 +1,42 @@
+<div class="standard-background">
+  <app-header [showLogout]="true"></app-header>
+
+
+  <div class="edit-lottery">
+    <div class="container">
+      <h1>{{lottery?.name}}</h1>
+      <p>{{lottery?.description}}</p>
+      <div class="row">
+        <div class="col-md-4">
+          <h4>Trekningen kan begynne:</h4>
+          <p>{{lottery?.dateTime.toDate() | date: 'dd-MM-yyyy HH:mm' }}</p>
+        </div>
+        <div class="col-md-4">
+          <h4>Lotteriet ble laget:</h4>
+          <p>{{lottery?.createdDate.toDate() | date: 'dd-MM-yyyy HH:mm' }}</p>
+        </div>
+        <div class="col-md-4">
+          <h4>Antall trekninger:</h4>
+          <p>{{lottery?.numberOfDraws}}</p>
+        </div>
+      </div>
+
+      <h3>Legg til deltakgere:</h3>
+      <form class="row" (ngSubmit)="addParticipant(newParticipantForm.value, newParticipantForm.valid)" [formGroup]="newParticipantForm">
+        <div class="form-element col-md-4">
+          <label>Navn:</label>
+          <input type="text" placeholder="Navn" formControlName="name">
+          <div class="error"><span *ngIf="name.invalid && (name.dirty || name.touched)" translate>Navn påkrevd</span></div>
+        </div>
+        <div class="form-element col-md-4">
+          <label>Antall lodd:</label>
+          <input type="number" placeholder="Antall" formControlName="numberOfTickets">
+          <div class="error"><span *ngIf="numberOfTickets.invalid && (numberOfTickets.dirty || numberOfTickets.touched)" translate>Navn påkrevd</span></div>
+        </div>
+        <div class="form-element col-md-4">
+          <button class="small-button green-background" type="submit">Legg til</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

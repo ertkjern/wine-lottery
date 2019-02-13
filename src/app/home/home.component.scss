@@ -1,3 +1,4 @@
+@import "../../styles/main";
 
 .lottery-home {
   height: 100vh;
@@ -18,6 +19,13 @@
     text-align: center;
   }
 
+  .lottery-input-large{
+    min-height: 110px;
+  }
+
+  .shake{
+    border-color: red;
+  }
   .lottery-register {
     position: absolute;
     width: 100%;
@@ -25,3 +33,5 @@
     bottom: 0;
   }
 }
+
+

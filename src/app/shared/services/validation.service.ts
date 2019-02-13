@@ -28,4 +28,15 @@ export class ValidationService {
     }
     return null;
   }
+
+  validDrawNumber(control: FormControl) {
+    if (control.value !== '' && isNaN(control.value)) {
+      return {'notValidNumber' : true};
+    }
+    const value = +control.value;
+    if (value < 1 || value > 100) {
+      return {'notValidNumber' : true};
+    }
+    return null;
+  }
 }

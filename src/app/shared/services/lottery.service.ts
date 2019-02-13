@@ -1,12 +1,14 @@
 import {Injectable} from '@angular/core';
 import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
 import {LotteryModel} from '../models/lottery.model';
-import {from, Observable, of} from 'rxjs';
+import {Observable} from 'rxjs';
+import * as firebase from 'firebase';
 
 @Injectable()
 export class LotteryService {
 
   private lotteryCollection: AngularFirestoreCollection<LotteryModel>;
+
 
   constructor(private afs: AngularFirestore) {
   }
@@ -20,6 +22,7 @@ export class LotteryService {
   public createLottery(lottery: LotteryModel): Promise<string> {
     const generatedId = this.afs.createId();
     lottery.id = generatedId;
+    lottery.createdDate = firebase.firestore.Timestamp.now();
     return new Promise<string>(
       resolve => {
         this.afs.collection<LotteryModel>('lotteries').doc(generatedId).set(lottery).then(result => {
@@ -31,5 +34,18 @@ export class LotteryService {
       }
     );
 
+  }
+
+  getLottery(lotteryId: string) {
+    return this.afs.doc<LotteryModel>('lotteries/' + lotteryId).valueChanges();
+  }
+
+  /**
+   * Get all ids by user ID.
+   *
+   * @param uid
+   */
+  public getMyLotteries(uid: string): Observable<LotteryModel[]> {
+    return this.afs.collection<LotteryModel>('lotteries', ref => ref.where('userId', '==', uid)).valueChanges();
   }
 }

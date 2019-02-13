@@ -5,6 +5,7 @@ import {RegisterComponent} from './register/register.component';
 import {ProfileComponent} from './profile/profile.component';
 import {AuthGuard} from '../shared/services/authGuard';
 import {NewLotteryComponent} from './new-lottery/new-lottery.component';
+import {EditLotteryComponent} from './edit-lottery/edit-lottery.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,11 @@ const routes: Routes = [
   {
     path: 'new-lottery',
     component: NewLotteryComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'edit-lottery/:id',
+    component: EditLotteryComponent,
     canActivate: [AuthGuard],
   }
 ];

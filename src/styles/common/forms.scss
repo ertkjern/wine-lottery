@@ -29,6 +29,15 @@
   font-size: 18px;
 }
 
+.small-button{
+  @include no-button-styling();
+  width: 100%;
+  height: 50px;
+  border: 1px solid black;
+  border-radius: 5px;
+  font-size: 18px;
+}
+
 .abort-button {
   @include no-button-styling();
   width: 100%;

@@ -13,6 +13,7 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
+  isLoading: boolean;
   errorMessage: string;
 
   constructor(private fb: FormBuilder, private router: Router, private validationService: ValidationService, private auth: AuthenticationService) {
@@ -20,9 +21,13 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.setupForm();
-    if (this.auth.isLoggedIn()) {
-      this.router.navigate(['profile']);
-    }
+    this.isLoading = true;
+    this.auth.isLoggedIn().subscribe(result => {
+      this.isLoading = false;
+      if (result) {
+        this.router.navigate(['profile']);
+      }
+    });
   }
 
   private setupForm() {

@@ -15,7 +15,9 @@ export class NewLotteryComponent implements OnInit {
 
   newLotteryForm: FormGroup;
   userId: string;
+  minDate: Date;
   errorMessage: string;
+  isLoading: boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -23,6 +25,7 @@ export class NewLotteryComponent implements OnInit {
     private lotteryService: LotteryService,
     private validationService: ValidationService,
     private auth: AuthenticationService) {
+    this.minDate = new Date();
   }
 
   ngOnInit() {
@@ -32,8 +35,10 @@ export class NewLotteryComponent implements OnInit {
 
   private setupForm() {
     this.newLotteryForm = this.fb.group({
+      name: ['', Validators.required],
       dateTime: ['', Validators.compose([Validators.required, this.validationService.dateTimeValidation])],
-      description: [''],
+      description: ['', Validators.required],
+      numberOfDraws: ['', Validators.compose([Validators.required, this.validationService.validDrawNumber])],
     });
   }
 
@@ -45,14 +50,19 @@ export class NewLotteryComponent implements OnInit {
     });
   }
 
-  createLottery(lotteryForm: LotteryModel) {
-    if (this.userId) {
+  createLottery(lotteryForm: LotteryModel, valid: boolean) {
+    this.errorMessage = null;
+    if (this.userId && valid) {
+      this.isLoading = true;
       lotteryForm.userId = this.userId;
-      const id = this.lotteryService.createLottery(lotteryForm).then(result => {
-        console.log(result);
+      this.lotteryService.createLottery(lotteryForm).then(id => {
+        this.isLoading = false;
+        this.router.navigate(['edit-lottery', id]);
+      }, () => {
+        this.isLoading = false;
       });
-      console.log(id);
     } else {
+      this.errorMessage = 'Something wrong with the form';
       console.error('No valid user id.');
     }
 
@@ -68,5 +78,13 @@ export class NewLotteryComponent implements OnInit {
 
   get description() {
     return this.newLotteryForm.get('description');
+  }
+
+  get name() {
+    return this.newLotteryForm.get('name');
+  }
+
+  get numberOfDraws() {
+    return this.newLotteryForm.get('numberOfDraws');
   }
 }

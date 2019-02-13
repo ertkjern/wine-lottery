@@ -1,17 +1,20 @@
 <div class="standard-background">
   <app-header></app-header>
-  <div class="lottery-login">
+  <div *ngIf="!isLoading" class="lottery-login">
     <h2>Logg inn</h2>
     <form (ngSubmit)="login(loginForm.value)" [formGroup]="loginForm" novalidate>
       <div class="lottery-input-large">
         <label for="email">Email</label>
         <input id="email" type="email" placeholder="Epost" autocomplete="username" formControlName="email">
-        <div class="error"><span *ngIf="email.invalid && (email.dirty || email.touched)" translate>Invalid email</span></div>
+        <div class="error"><span *ngIf="email.invalid && (email.dirty || email.touched)" translate>Invalid email</span>
+        </div>
       </div>
       <div class="lottery-input-large">
         <label for="password">Passord</label>
-        <input id="password" type="password" placeholder="Passord" autocomplete="current-password" formControlName="password">
-        <div class="error"><span *ngIf="password.invalid && (password.dirty || password.touched)" translate>Password required</span></div>
+        <input id="password" type="password" placeholder="Passord" autocomplete="current-password"
+               formControlName="password">
+        <div class="error"><span *ngIf="password.invalid && (password.dirty || password.touched)" translate>Password required</span>
+        </div>
       </div>
       <div class="buttons">
         <button class="lottery-side-by-side green-background" type="submit">Logg inn</button>
@@ -20,6 +23,10 @@
       <p *ngIf="errorMessage" class="error margin-top-15">{{errorMessage}}</p>
     </form>
 
+  </div>
+
+  <div *ngIf="isLoading" class="loading">
+    <i class="fa fa-2x fa-cog fa-spin"></i>
   </div>
 
 </div>

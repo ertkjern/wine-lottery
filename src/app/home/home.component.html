@@ -5,10 +5,14 @@
 
       <div class="lottery-input-large">
         <label for="pin">Finn ditt lotteri</label>
-        <input id="pin" placeholder="Lotteri pin" [(ngModel)]="pin">
+        <input autocomplete="off" class="animated" [ngClass]="{'shake': showError}" id="pin" placeholder="Lotteri pin" [(ngModel)]="pin">
+        <span *ngIf="showError" class="error">Fant ikke lotteri</span>
       </div>
 
-      <button class="large-button positive">BLI MED</button>
+      <button [disabled]="isLoading" (click)="goToLottery()" class="large-button positive">
+        <span *ngIf="!isLoading">BLI MED</span>
+        <span *ngIf="isLoading"><i class="fa fa-cog fa-spin"></i></span>
+      </button>
     </div>
   </div>
   <div class="lottery-register">

@@ -1,0 +1,32 @@
+.edit-lottery{
+  margin-top: 45px;
+
+
+  h3{
+    margin-top: 35px;
+    font-size: 20px;
+  }
+
+  h4{
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+
+  .form-element{
+    label{
+      display: block;
+    }
+    input{
+      width: 100%;
+    }
+    .small-button{
+      margin-top: 10px;
+    }
+
+  }
+
+  .opacity-0{
+    opacity: 0;
+  }
+}
