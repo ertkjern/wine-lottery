@@ -48,11 +48,10 @@ export class NewLotteryComponent implements OnInit {
   createLottery(lotteryForm: LotteryModel) {
     if (this.userId) {
       lotteryForm.userId = this.userId;
-      this.lotteryService.createLottery(lotteryForm).subscribe(result => {
+      const id = this.lotteryService.createLottery(lotteryForm).then(result => {
         console.log(result);
-      }, error => {
-        console.log(error);
       });
+      console.log(id);
     } else {
       console.error('No valid user id.');
     }
