@@ -1,4 +1,7 @@
 export class ParticipantModel {
   name: string;
-  amount: number;
+  numberOfTickets: number;
+
+  cssTop?: number;
+  cssLeft?: number;
 }

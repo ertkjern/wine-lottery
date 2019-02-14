@@ -12,6 +12,7 @@ export class LotteryComponent implements OnInit {
 
   lotteryId: string;
   lottery: LotteryModel;
+  hasStarted: boolean;
 
   constructor(
     private router: Router,

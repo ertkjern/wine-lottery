@@ -2,8 +2,6 @@
   <app-header></app-header>
 
   <div class="lottery">
-    <h1>
-      {{lottery?.name}}
-    </h1>
+   <app-waiting-to-start *ngIf="lottery" [lottery]="lottery"></app-waiting-to-start>
   </div>
 </div>

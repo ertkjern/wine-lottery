@@ -5,10 +5,11 @@ import {AuthenticationService} from './services/authentication.service';
 import {AuthGuard} from './services/authGuard';
 import { HeaderComponent } from './components/header/header.component';
 import {LotteryService} from './services/lottery.service';
+import { CountDownComponent } from './components/count-down/count-down.component';
 
 @NgModule({
-  exports: [HeaderComponent],
-  declarations: [HeaderComponent],
+  exports: [HeaderComponent, CountDownComponent],
+  declarations: [HeaderComponent, CountDownComponent],
   imports: [
     CommonModule
   ],

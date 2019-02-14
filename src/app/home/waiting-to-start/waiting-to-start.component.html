@@ -1,0 +1,11 @@
+<div class="floating-participants" [ngStyle]="{'top': participant.cssTop + '%', 'left': participant.cssLeft + '%', 'font-size': 18 + (participant.numberOfTickets * 2) + 'px'}" *ngFor="let participant of lottery?.participants">
+  {{participant.name}}
+</div>
+
+<div class="waiting-for-start">
+  <div class="wrapper">
+    <h3>Lotteriet begynner om:</h3>
+    <app-count-down class="counter" *ngIf="lottery.dateTime" [eventDate]="lottery.dateTime.toDate()"></app-count-down>
+  </div>
+
+</div>

@@ -31,12 +31,33 @@
         <div class="form-element col-md-4">
           <label>Antall lodd:</label>
           <input type="number" placeholder="Antall" formControlName="numberOfTickets">
-          <div class="error"><span *ngIf="numberOfTickets.invalid && (numberOfTickets.dirty || numberOfTickets.touched)" translate>Navn påkrevd</span></div>
+          <div class="error"><span *ngIf="numberOfTickets.invalid && (numberOfTickets.dirty || numberOfTickets.touched)" translate>Antall lodd må være mellom 0-100</span></div>
         </div>
         <div class="form-element col-md-4">
-          <button class="small-button green-background" type="submit">Legg til</button>
+          <button class="small-button green-background" type="submit">
+            <span *ngIf="isLoading"><i class="fa fa-cog fa-spin"></i></span>
+            <span *ngIf="!isLoading">Legg til</span>
+          </button>
+          <span class="error" *ngIf="addParticipantError">{{addParticipantError}}</span>
         </div>
       </form>
+
+      <div class="participants">
+        <h3>Deltakere</h3>
+        <div class="row">
+          <div class="col-8 header">Navn</div>
+          <div class="col-2 header">Antall lodd</div>
+          <div class="col-2 header"></div>
+        </div>
+        <div class="row" *ngFor="let participants of lottery?.participants; let i = index">
+          <div class="col additonal-padding col-8">{{participants.name}}</div>
+          <div class="col additonal-padding col-2">{{participants.numberOfTickets}}</div>
+          <div class="col col-2"><button class="delete" (click)="deleteParticipant(participants.name, i)"><i class="fa fa-trash-o"></i> </button></div>
+        </div>
+      </div>
     </div>
+
+
   </div>
+
 </div>

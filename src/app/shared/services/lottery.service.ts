@@ -36,8 +36,22 @@ export class LotteryService {
 
   }
 
+  /**
+   * Get a spesific lottery based on its id
+   *
+   * @param lotteryId
+   */
   getLottery(lotteryId: string) {
     return this.afs.doc<LotteryModel>('lotteries/' + lotteryId).valueChanges();
+  }
+
+  /**
+   * Update a lotterymodel
+   *
+   * @param updatedLotteryModel
+   */
+  updateLottery(updatedLotteryModel: LotteryModel) {
+    this.afs.doc<LotteryModel>('lotteries/' + updatedLotteryModel.id).update(updatedLotteryModel);
   }
 
   /**

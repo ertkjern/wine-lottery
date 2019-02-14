@@ -8,5 +8,5 @@ export class LotteryModel {
   description: string;
   numberOfDraws: number;
   userId?: string;
-  tickets?: ParticipantModel[];
+  participants?: ParticipantModel[];
 }

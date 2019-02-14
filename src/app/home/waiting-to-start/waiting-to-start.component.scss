@@ -1,0 +1,39 @@
+@import "../../../styles/main";
+
+.floating-participants {
+  position: absolute;
+  color: black;
+  font-size: 18px;
+  animation: float 6s ease-in-out infinite;
+  opacity: 0.6;
+  z-index: -1;
+}
+
+.waiting-for-start {
+  width: 100%;
+  margin-top: 25vh;
+  text-align: center;
+  z-index: 100;
+
+  .wrapper {
+    margin: auto;
+    max-width: 400px;
+    padding: 10px 10px 10px 10px;
+    min-height: 120px;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    z-index: 1000;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-animation-name: color-swap; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 60s; /* Safari 4.0 - 8.0 */
+    animation-name: color-swap;
+    animation-duration: 60s;
+  }
+  .counter {
+    border-radius: 5px;
+    font-size: 32px;
+
+  }
+}
+
+

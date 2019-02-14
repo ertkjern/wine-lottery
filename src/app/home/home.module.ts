@@ -7,11 +7,13 @@ import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import { LotteryComponent } from './lottery/lottery.component';
 import {SharedModule} from '../shared/shared.module';
+import { WaitingToStartComponent } from './waiting-to-start/waiting-to-start.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
-    LotteryComponent
+    LotteryComponent,
+    WaitingToStartComponent
   ],
   imports: [
     CommonModule,
