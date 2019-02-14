@@ -58,7 +58,8 @@ export class NewLotteryComponent implements OnInit {
       this.lotteryService.createLottery(lotteryForm).then(id => {
         this.isLoading = false;
         this.router.navigate(['edit-lottery', id]);
-      }, () => {
+      }, error => {
+        console.log(error);
         this.isLoading = false;
       });
     } else {

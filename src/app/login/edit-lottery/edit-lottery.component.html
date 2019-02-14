@@ -25,7 +25,7 @@
           Trekningen begynner om:
         </div>
         <div class="col-md-8">
-          <app-count-down (countDownFinished)="setCountdownFinished($event)" [eventDate]="lottery?.dateTime.toDate()"></app-count-down>
+          <app-count-down *ngIf="lottery?.dateTime" (countDownFinished)="setCountdownFinished($event)" [eventDate]="lottery?.dateTime.toDate()"></app-count-down>
         </div>
       </div>
 
