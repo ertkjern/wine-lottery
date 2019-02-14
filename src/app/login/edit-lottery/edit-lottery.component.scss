@@ -49,7 +49,39 @@
     }
   }
 
+  .participant-list{
+    max-height: 500px;
+    overflow-y: scroll;
+  }
+
   .opacity-0{
     opacity: 0;
+  }
+
+  .start-lottery{
+    width: 100%;
+    margin: auto;
+    margin-top: 35px;
+    margin-bottom: 35px;
+    text-align: center;
+    p{
+      margin-top: 35px;
+    }
+    .start-lottery-button{
+      width: 250px;
+      height: 250px;
+      background-color: $green-opacity;
+      border-color: $green;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      border-radius: 50%;
+      @include standard-transition();
+      &:hover{
+        transform: scale(1.4);
+        background-color: $pink-opacity;
+        border-color: $main-pink;
+        @include standard-transition();
+      }
+    }
   }
 }

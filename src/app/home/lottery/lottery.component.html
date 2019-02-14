@@ -1,5 +1,5 @@
 <div class="standard-background">
-  <app-header></app-header>
+  <app-header [title]="lottery?.name"></app-header>
 
   <div class="lottery">
    <app-waiting-to-start *ngIf="lottery" [lottery]="lottery"></app-waiting-to-start>

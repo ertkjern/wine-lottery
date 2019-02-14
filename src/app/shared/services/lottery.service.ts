@@ -23,6 +23,7 @@ export class LotteryService {
     const generatedId = this.afs.createId();
     lottery.id = generatedId;
     lottery.createdDate = firebase.firestore.Timestamp.now();
+    
     return new Promise<string>(
       resolve => {
         this.afs.collection<LotteryModel>('lotteries').doc(generatedId).set(lottery).then(result => {

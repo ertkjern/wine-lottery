@@ -9,8 +9,13 @@ import {LotteryModel} from '../../shared/models/lottery.model';
 export class WaitingToStartComponent {
 
   @Input() lottery: LotteryModel;
+  countdownFinished: boolean;
 
   constructor() {
+  }
+
+  setCountDownFinished(event: boolean) {
+    this.countdownFinished = event;
   }
 
 

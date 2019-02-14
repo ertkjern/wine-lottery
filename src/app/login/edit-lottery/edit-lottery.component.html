@@ -1,4 +1,4 @@
-<div class="standard-background">
+<div class="large-background">
   <app-header [showLogout]="true"></app-header>
 
 
@@ -19,6 +19,19 @@
           <h4>Antall trekninger:</h4>
           <p>{{lottery?.numberOfDraws}}</p>
         </div>
+      </div>
+      <div *ngIf="!countdownFinished" class="row">
+        <div class="col-md-4">
+          Trekningen begynner om:
+        </div>
+        <div class="col-md-8">
+          <app-count-down (countDownFinished)="setCountdownFinished($event)" [eventDate]="lottery?.dateTime.toDate()"></app-count-down>
+        </div>
+      </div>
+
+      <div *ngIf="countdownFinished" class="start-lottery">
+        <button class="animated lightSpeedIn start-lottery-button">Start Lotteri!</button>
+        <p>Dersom det gjenstår flere trekninger kan flere detalkere legges til.</p>
       </div>
 
       <h3>Legg til deltakgere:</h3>
@@ -49,11 +62,14 @@
           <div class="col-2 header">Antall lodd</div>
           <div class="col-2 header"></div>
         </div>
-        <div class="row" *ngFor="let participants of lottery?.participants; let i = index">
-          <div class="col additonal-padding col-8">{{participants.name}}</div>
-          <div class="col additonal-padding col-2">{{participants.numberOfTickets}}</div>
-          <div class="col col-2"><button class="delete" (click)="deleteParticipant(participants.name, i)"><i class="fa fa-trash-o"></i> </button></div>
+        <div class="participant-list">
+          <div class="row" *ngFor="let participants of lottery?.participants; let i = index">
+            <div class="col additonal-padding col-8">{{participants.name}}</div>
+            <div class="col additonal-padding col-2">{{participants.numberOfTickets}}</div>
+            <div class="col col-2"><button class="delete" (click)="deleteParticipant(participants.name, i)"><i class="fa fa-trash-o"></i> </button></div>
+          </div>
         </div>
+
       </div>
     </div>
 

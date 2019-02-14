@@ -10,6 +10,7 @@ import {AuthenticationService} from '../../services/authentication.service';
 export class HeaderComponent implements OnInit {
 
   @Input() showLogout: boolean;
+  @Input() title: string;
 
   constructor(private auth: AuthenticationService, private router: Router) { }
 

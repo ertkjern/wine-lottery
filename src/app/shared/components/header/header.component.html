@@ -1,5 +1,5 @@
 <div class="container">
   <img (click)="home()" class="header-logo" src="./assets/images/logo-text.svg">
   <button *ngIf="showLogout" (click)="logout()" class="logout-button">Logg ut</button>
-
+  <h2 class="header-title" *ngIf="title">{{title}}</h2>
 </div>

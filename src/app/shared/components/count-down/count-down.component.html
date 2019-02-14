@@ -1,8 +1,6 @@
 <div class="count-down">
-  <span *ngIf="days > 0"> {{days}} dager </span>
-  <span *ngIf="hours > 0"> {{hours}} timer </span>
-  <span *ngIf="minutes > 0"> {{minutes}} min </span>
-  <span *ngIf="seconds > 0"> {{seconds}} sek </span>
-
-  <span *ngIf="days <= 0 && hours <= 0 && minutes <= 0 && seconds <= 0">Venter på admin starter</span>
+  <span *ngIf="days > 0 && diff > 0"> {{days}} dager </span>
+  <span *ngIf="hours > 0 && diff > 0"> {{hours}} timer </span>
+  <span *ngIf="minutes > 0 && diff > 0"> {{minutes}} min </span>
+  <span *ngIf="seconds > 0 && diff > 0"> {{seconds}} sek </span>
 </div>

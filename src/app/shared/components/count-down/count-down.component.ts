@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {interval} from 'rxjs';
 import {map} from 'rxjs/operators';
 
@@ -7,14 +7,15 @@ import {map} from 'rxjs/operators';
   templateUrl: './count-down.component.html',
   styleUrls: ['./count-down.component.scss']
 })
-export class CountDownComponent implements OnInit {
+export class CountDownComponent implements OnInit, OnDestroy {
 
 
 // Hardcoded date
   @Input() eventDate: Date;
-
+  @Output() countDownFinished: EventEmitter<boolean>;
   private diff: number;
   private countDownResult: number;
+  interval: any;
   isLoading: boolean;
   days: number;
   hours: number;
@@ -22,12 +23,24 @@ export class CountDownComponent implements OnInit {
   seconds: number;
 
   constructor() {
+    this.countDownFinished = new EventEmitter<boolean>();
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.interval);
   }
 
   ngOnInit() {
     this.isLoading = true;
-    interval(1000).pipe( map((x) => {
+    this.interval = interval(1000).pipe(map((x) => {
       this.diff = Math.floor((this.eventDate.getTime() - new Date().getTime()) / 1000);
+      if (this.diff < 0) {
+        this.days = 0;
+        this.hours = 0;
+        this.minutes = 0;
+        this.seconds = 0;
+        this.countDownFinished.emit(true);
+      }
     })).subscribe((x) => {
       this.days = this.getDays(this.diff);
       this.hours = this.getHours(this.diff);

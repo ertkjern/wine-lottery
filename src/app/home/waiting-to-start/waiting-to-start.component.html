@@ -5,7 +5,9 @@
 <div class="waiting-for-start">
   <div class="wrapper">
     <h3>Lotteriet begynner om:</h3>
-    <app-count-down class="counter" *ngIf="lottery.dateTime" [eventDate]="lottery.dateTime.toDate()"></app-count-down>
+    <app-count-down class="counter" *ngIf="lottery.dateTime && !countdownFinished" (countDownFinished)="setCountDownFinished($event)" [eventDate]="lottery.dateTime.toDate()"></app-count-down>
+    <span *ngIf="countdownFinished">Venter på admin</span>
+    <p class="description">{{lottery.description}}</p>
   </div>
 
 </div>

@@ -18,6 +18,7 @@ export class EditLotteryComponent implements OnInit {
   newParticipantForm: FormGroup;
   addParticipantError: string;
   isLoading: boolean;
+  countdownFinished: boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -49,6 +50,10 @@ export class EditLotteryComponent implements OnInit {
         this.updateLotteryModel(this.lottery);
       }
     }
+  }
+
+  setCountdownFinished(value: boolean) {
+    this.countdownFinished = value;
   }
 
   private updateForm(participant: ParticipantModel) {
