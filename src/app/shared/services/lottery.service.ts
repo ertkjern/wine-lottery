@@ -3,6 +3,7 @@ import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firest
 import {LotteryModel} from '../models/lottery.model';
 import {Observable} from 'rxjs';
 import * as firebase from 'firebase';
+import {DrawModel} from '../models/draw.model';
 
 @Injectable()
 export class LotteryService {
@@ -23,7 +24,8 @@ export class LotteryService {
     const generatedId = this.afs.createId();
     lottery.id = generatedId;
     lottery.createdDate = firebase.firestore.Timestamp.now();
-    
+    lottery = this.addDraws(lottery);
+
     return new Promise<string>(
       resolve => {
         this.afs.collection<LotteryModel>('lotteries').doc(generatedId).set(lottery).then(result => {
@@ -38,11 +40,30 @@ export class LotteryService {
   }
 
   /**
+   * Create draw model for each amount of lotteries that should be drawed
+   *
+   * @param lottery
+   */
+  private addDraws(lottery: LotteryModel): LotteryModel {
+    const draws: DrawModel[] = [];
+    if (lottery.numberOfDraws > 0) {
+      for (let i = 0; i < lottery.numberOfDraws; i++) {
+        const draw: DrawModel = new DrawModel();
+        draw.started = false;
+        draws.push(draw);
+      }
+      return lottery;
+    } else {
+      throw new Error('Cant create order without any draws');
+    }
+  }
+
+  /**
    * Get a spesific lottery based on its id
    *
    * @param lotteryId
    */
-  getLottery(lotteryId: string) {
+  public getLottery(lotteryId: string) {
     return this.afs.doc<LotteryModel>('lotteries/' + lotteryId).valueChanges();
   }
 
@@ -51,7 +72,7 @@ export class LotteryService {
    *
    * @param updatedLotteryModel
    */
-  updateLottery(updatedLotteryModel: LotteryModel) {
+  public updateLottery(updatedLotteryModel: LotteryModel) {
     this.afs.doc<LotteryModel>('lotteries/' + updatedLotteryModel.id).update(updatedLotteryModel);
   }
 
