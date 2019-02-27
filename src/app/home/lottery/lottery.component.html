@@ -2,6 +2,8 @@
   <app-header [title]="lottery?.name"></app-header>
 
   <div class="lottery">
-   <app-waiting-to-start *ngIf="lottery" [lottery]="lottery"></app-waiting-to-start>
+   <app-waiting-to-start *ngIf="lottery && !hasStarted" [winners]="winners" [lottery]="lottery"></app-waiting-to-start>
+    <app-draw (drawFinished)="drawFinished()" *ngIf="lottery && hasStarted" [participants]="lottery.latestParticipantList" [draw]="currentDraw"></app-draw>
   </div>
+
 </div>

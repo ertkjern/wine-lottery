@@ -30,7 +30,8 @@
       </div>
 
       <div *ngIf="countdownFinished" class="start-lottery">
-        <button class="animated lightSpeedIn start-lottery-button">Start Lotteri!</button>
+        <button  *ngIf="!lotteryOngoing" (click)="startLottery()" class="animated lightSpeedIn start-lottery-button">Start Lotteri!</button>
+        <button disabled *ngIf="lotteryOngoing" (click)="startLottery()" class="start-lottery-button disabled">Trekning pågår!</button>
         <p>Dersom det gjenstår flere trekninger kan flere detalkere legges til.</p>
       </div>
 

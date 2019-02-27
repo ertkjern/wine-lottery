@@ -7,8 +7,9 @@ export class LotteryModel {
   dateTime: Timestamp;
   createdDate: Timestamp;
   description: string;
+  latestParticipantList?: string[];
   numberOfDraws: number;
-  draws?: DrawModel[];
+  draws?: any[];
   userId?: string;
   participants?: ParticipantModel[];
 }

@@ -6,12 +6,21 @@ import {LotteryModel} from '../../shared/models/lottery.model';
   templateUrl: './waiting-to-start.component.html',
   styleUrls: ['./waiting-to-start.component.scss']
 })
-export class WaitingToStartComponent {
+export class WaitingToStartComponent implements OnChanges{
 
   @Input() lottery: LotteryModel;
+  @Input() winners: string[];
   countdownFinished: boolean;
+  tickets: number;
 
   constructor() {
+  }
+
+  ngOnChanges() {
+    this.tickets = 0;
+    this.lottery.participants.forEach(participant => {
+      this.tickets += participant.numberOfTickets;
+    });
   }
 
   setCountDownFinished(event: boolean) {

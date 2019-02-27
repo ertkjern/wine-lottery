@@ -13,6 +13,7 @@ import {ParticipantModel} from '../../shared/models/participant.model';
 })
 export class EditLotteryComponent implements OnInit {
 
+  lotteryOngoing: boolean;
   lotteryId: string;
   lottery: LotteryModel;
   newParticipantForm: FormGroup;
@@ -41,6 +42,52 @@ export class EditLotteryComponent implements OnInit {
     } else {
       this.addParticipantError = 'Skjema har mangler';
     }
+  }
+
+  startLottery() {
+    const previousWinners = [];
+    for (let i = 0; i < this.lottery.draws.length; i++) {
+      const draw = this.lottery.draws[i];
+
+      if (draw.started) {
+        previousWinners.push(draw.winner);
+      }
+
+      if (!draw.started) {
+        this.startLotteryTimer();
+        const participants = this.generateParticipantList(previousWinners);
+        if (participants.length > 0) {
+          const winnerIndex = Math.floor((Math.random() * participants.length - 1) + 1);
+          const winner = participants[winnerIndex];
+          this.lotteryService.setWinnerAndStart(this.lottery, winner, i, participants);
+          break;
+        }
+      }
+    }
+  }
+
+  private startLotteryTimer() {
+    this.lotteryOngoing = true;
+    setTimeout(() => {
+      this.lotteryOngoing = false;
+    }, 30000);
+  }
+
+  private generateParticipantList(previousWinners: any[]) {
+    const drawList = [];
+    this.lottery.participants.forEach(participant => {
+      let numberOfTickets = participant.numberOfTickets;
+      // remove a ticket if already won.
+      const hasWonBeforeIndex = previousWinners.indexOf(participant.name);
+      if (hasWonBeforeIndex > -1) {
+        previousWinners.splice(hasWonBeforeIndex, 1);
+        numberOfTickets -= 1;
+      }
+      for (let i = 0; i < numberOfTickets; i++) {
+        drawList.push(participant.name);
+      }
+    });
+    return drawList;
   }
 
   deleteParticipant(name: string, index: number) {

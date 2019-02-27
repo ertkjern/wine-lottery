@@ -1,0 +1,16 @@
+<div class="draw">
+
+  <div class="content">
+    <h1 [ngClass]="{'fadeIn': nameToShow === 'winner1', 'fadeOut': nameToShow === 'winner2'}" class="animated">
+      <span *ngIf="finished" class="trophy">🏆</span>
+      <span>{{winner1}}</span>
+      <span *ngIf="finished" class="trophy">🏆</span>
+    </h1>
+    <h1 [ngClass]="{'fadeIn': nameToShow === 'winner2',  'fadeOut': nameToShow === 'winner1'}" class="animated"><span>{{winner2}}</span></h1>
+
+  </div>
+
+</div>
+
+
+<!--<span *ngIf="finished" class="trophy">🏆</span> -->

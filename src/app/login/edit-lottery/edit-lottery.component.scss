@@ -83,5 +83,10 @@
         @include standard-transition();
       }
     }
+    .start-lottery-button.disabled{
+      background-color: gray;
+      color: white;
+      border-color: gray;
+    }
   }
 }

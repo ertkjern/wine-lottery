@@ -8,6 +8,15 @@
     <app-count-down class="counter" *ngIf="lottery.dateTime && !countdownFinished" (countDownFinished)="setCountDownFinished($event)" [eventDate]="lottery.dateTime.toDate()"></app-count-down>
     <span *ngIf="countdownFinished">Venter på admin</span>
     <p class="description">{{lottery.description}}</p>
+    <p class="description">Antall lodd: {{tickets}}</p>
+  </div>
+
+  <div class="winners">
+
+    <h3 *ngIf="winners?.length > 0">🏆 Winners 🏆</h3>
+    <div *ngFor="let winner of winners">
+      <p>{{winner}}</p>
+    </div>
   </div>
 
 </div>
