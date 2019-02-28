@@ -41,11 +41,10 @@ export class LotteryService {
 
   }
 
-  public setWinnerAndStart(lottery: LotteryModel, winner: string, drawIndex: number, participants: string[]) {
+  public setWinnerAndStart(lottery: LotteryModel, winner: string, drawIndex: number) {
     const draw = lottery.draws[drawIndex];
     draw.winner = winner;
     draw.started = true;
-    lottery.latestParticipantList = participants;
     this.afs.doc<LotteryModel>('lotteries/' + lottery.id).update(lottery);
   }
 

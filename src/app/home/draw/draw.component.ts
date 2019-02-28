@@ -4,6 +4,7 @@ import {of, Subject, timer} from 'rxjs';
 import {catchError, takeUntil} from 'rxjs/operators';
 import {slide} from '../../shared/animations/slide.animations';
 import {fadeInOut} from '../../shared/animations/fade-in-out.animation';
+import {LotteryModel} from '../../shared/models/lottery.model';
 
 @Component({
   selector: 'app-draw',
@@ -14,7 +15,9 @@ import {fadeInOut} from '../../shared/animations/fade-in-out.animation';
 export class DrawComponent implements OnInit {
 
   @Input() draw: DrawModel;
-  @Input() participants: string[];
+  @Input() lottery: LotteryModel;
+  @Input() currentDrawIndex: number;
+  participants: string[];
   @Output() drawFinished: EventEmitter<boolean>;
   finished: boolean;
   winner1: string;
@@ -27,7 +30,39 @@ export class DrawComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.participants = this.createListOfParticipantsThisRound(this.lottery);
+    console.log(this.participants);
     this.start();
+  }
+
+  private createListOfParticipantsThisRound(lottery: LotteryModel) {
+    const previousWinners = [];
+    let index = 0;
+    lottery.draws.forEach(result => {
+      debugger;
+      if (result.winner && index < this.currentDrawIndex) {
+        previousWinners.push(result.winner);
+      }
+      index += 1;
+    });
+    return this.generateParticipantList(previousWinners);
+  }
+
+  private generateParticipantList(previousWinners: any[]) {
+    const drawList = [];
+    this.lottery.participants.forEach(participant => {
+      let numberOfTickets = participant.numberOfTickets;
+      // remove a ticket if already won.
+      const hasWonBeforeIndex = previousWinners.indexOf(participant.name);
+      if (hasWonBeforeIndex > -1) {
+        previousWinners.splice(hasWonBeforeIndex, 1);
+        numberOfTickets -= 1;
+      }
+      for (let i = 0; i < numberOfTickets; i++) {
+        drawList.push(participant.name);
+      }
+    });
+    return drawList;
   }
 
   private start() {

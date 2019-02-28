@@ -17,6 +17,7 @@ export class EditLotteryComponent implements OnInit {
   lotteryId: string;
   lottery: LotteryModel;
   newParticipantForm: FormGroup;
+  numberOfDrawsDone: number;
   addParticipantError: string;
   isLoading: boolean;
   countdownFinished: boolean;
@@ -27,6 +28,7 @@ export class EditLotteryComponent implements OnInit {
     private lotteryService: LotteryService,
     private ar: ActivatedRoute
   ) {
+    this.numberOfDrawsDone = 0;
   }
 
   ngOnInit() {
@@ -59,7 +61,7 @@ export class EditLotteryComponent implements OnInit {
         if (participants.length > 0) {
           const winnerIndex = Math.floor((Math.random() * participants.length - 1) + 1);
           const winner = participants[winnerIndex];
-          this.lotteryService.setWinnerAndStart(this.lottery, winner, i, participants);
+          this.lotteryService.setWinnerAndStart(this.lottery, winner, i);
           break;
         }
       }
@@ -138,6 +140,12 @@ export class EditLotteryComponent implements OnInit {
   private getLottery(lotteryId: string) {
     this.lotteryService.getLottery(lotteryId).subscribe(lottery => {
       this.lottery = lottery;
+      this.lottery.draws.forEach(draw => {
+        if (draw.started) {
+          this.numberOfDrawsDone += 1;
+        }
+      });
+
     }, () => {
       console.error('something went wrong grabbing lottery by id');
     });

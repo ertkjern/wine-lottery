@@ -11,9 +11,9 @@
     <p class="description">Antall lodd: {{tickets}}</p>
   </div>
 
-  <div class="winners">
+  <div *ngIf="winners?.length > 0" class="winners">
 
-    <h3 *ngIf="winners?.length > 0">🏆 Winners 🏆</h3>
+    <h3>🏆 Winners 🏆</h3>
     <div *ngFor="let winner of winners">
       <p>{{winner}}</p>
     </div>
