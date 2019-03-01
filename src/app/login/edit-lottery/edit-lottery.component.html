@@ -29,13 +29,13 @@
         </div>
       </div>
 
-      <div *ngIf="countdownFinished && numberOfDrawsDone <= lottery.numberOfDraws" class="start-lottery">
+      <div *ngIf="countdownFinished && numberOfDrawsDone <= lottery?.numberOfDraws" class="start-lottery">
         <button  *ngIf="!lotteryOngoing" (click)="startLottery()" class="animated lightSpeedIn start-lottery-button">Start Lotteri!</button>
         <button disabled *ngIf="lotteryOngoing" (click)="startLottery()" class="start-lottery-button disabled">Trekning pågår!</button>
         <p>Dersom det gjenstår flere trekninger kan flere detalkere legges til.</p>
       </div>
 
-      <div *ngIf="numberOfDrawsDone >= lottery.numberOfDraws">
+      <div *ngIf="numberOfDrawsDone >= lottery?.numberOfDraws">
         <div *ngFor="let draw of lottery.draws">
           <h3>🏆 Winners 🏆</h3>
           <p>{{draw.winner}}</p>

@@ -18,9 +18,11 @@ export class WaitingToStartComponent implements OnChanges{
 
   ngOnChanges() {
     this.tickets = 0;
-    this.lottery.participants.forEach(participant => {
-      this.tickets += participant.numberOfTickets;
-    });
+    if(this.lottery.participants) {
+      this.lottery.participants.forEach(participant => {
+        this.tickets += participant.numberOfTickets;
+      });
+    }
   }
 
   setCountDownFinished(event: boolean) {

@@ -24,14 +24,20 @@ export class DrawComponent implements OnInit {
   winner2: string;
 
   nameToShow: string;
+  victory = new Audio();
+  tick = new Audio();
 
   constructor() {
     this.drawFinished = new EventEmitter<boolean>();
   }
 
   ngOnInit() {
+    this.victory.src = '../../assets/sounds/victory.mp3';
+    this.victory.load();
+    this.tick.src = '../../assets/sounds/tick.mp3';
+    this.tick.load();
+
     this.participants = this.createListOfParticipantsThisRound(this.lottery);
-    console.log(this.participants);
     this.start();
   }
 
@@ -39,7 +45,6 @@ export class DrawComponent implements OnInit {
     const previousWinners = [];
     let index = 0;
     lottery.draws.forEach(result => {
-      debugger;
       if (result.winner && index < this.currentDrawIndex) {
         previousWinners.push(result.winner);
       }

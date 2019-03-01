@@ -13,8 +13,8 @@ export class CountDownComponent implements OnInit, OnDestroy {
 // Hardcoded date
   @Input() eventDate: Date;
   @Output() countDownFinished: EventEmitter<boolean>;
-  private diff: number;
-  private countDownResult: number;
+  diff: number;
+  countDownResult: number;
   interval: any;
   isLoading: boolean;
   days: number;
