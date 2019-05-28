@@ -5,6 +5,17 @@ Register to create a new wine lottery or join an existing lottery.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.6.
 
+## Installation
+
+Clone the project and run `npm install` in the project folder. 
+When installation is complete, run `npm start`. You  need to setup Firebase before it can be used, see next section for more information.
+
+## Firebase 
+
+Firebase will give you both a database and authentication for free (for a while, see their own pricing model on their website). When you have created a Firebase project and turned on email authentication, you can add the API keys you receive from firebase to the `environment.ts` file. 
+
+Now you should be good to go. 
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
