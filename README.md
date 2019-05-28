@@ -3,7 +3,7 @@
 # WineLottery
 
 This is a web application to draw winners of a wine lottery in real time.
-A live version of the application can be found here: vinlotteriet.no
+A live version of the application can be found here: https://vinlotteriet.no
 
 Register to create a new wine lottery or join an existing lottery. The creator of the application will start the draw, and anyone with the PIN can join in and see the lottery live.
 
