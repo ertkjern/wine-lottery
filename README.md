@@ -1,7 +1,13 @@
 ![GCRE](src/assets/images/tiny-logo.png)
+
 # WineLottery
 
-Register to create a new wine lottery or join an existing lottery. 
+This is a web application to draw winners of a wine lottery in real time.
+A live version of the application can be found here: vinlotteriet.no
+
+Register to create a new wine lottery or join an existing lottery. The creator of the application will start the draw, and anyone with the PIN can join in and see the lottery live.
+
+The project can basicly be used for any types of lotteries. Clone the repo to make your own.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.6.
 
