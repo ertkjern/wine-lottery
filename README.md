@@ -7,7 +7,7 @@ A live version of the application can be found here: https://vinlotteriet.no
 
 Register to create a new wine lottery or join an existing lottery. 
 
-The project can be used for any types of lotteries. Clone the repo to make your own.
+The project can be used for any types of lotteries. 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.6.
 
