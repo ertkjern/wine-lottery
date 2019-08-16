@@ -18,7 +18,7 @@ When installation is complete, run `npm start`. You  need to setup Firebase befo
 
 ## Firebase 
 
-Firebase will give you both a database and authentication for free (for a while, see their own pricing model on their website). When you have created a Firebase project and turned on email authentication, you can add the API keys you receive from firebase to the `environment.ts` file. 
+Firebase will give you both a database and authentication for free (see their own pricing model on their website when it will start costing money). When you have created a Firebase project and turned on email authentication, you can add the API keys you receive from firebase to the `environment.ts` file. 
 
 Now you should be good to go. 
 
