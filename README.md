@@ -1,5 +1,8 @@
 ![GCRE](src/assets/images/tiny-logo.png)
 
+
+![build badge](https://github.com/ertkjern/wine-lottery/workflows/Node%20CI/badge.svg)
+
 # WineLottery
 
 This is a web application to draw winners of a wine lottery in real time.
