@@ -80,10 +80,10 @@ export class EditLotteryComponent implements OnInit {
     this.lottery.participants.forEach(participant => {
       let numberOfTickets = participant.numberOfTickets;
       // remove a ticket if already won.
-      const hasWonBeforeIndex = previousWinners.indexOf(participant.name);
-      if (hasWonBeforeIndex > -1) {
-        previousWinners.splice(hasWonBeforeIndex, 1);
-        numberOfTickets -= 1;
+      const numberOfWinsBefore = previousWinners.filter(name => name === participant.name).length;
+      if (numberOfWinsBefore > -1) {
+        numberOfTickets -= numberOfWinsBefore;
+        previousWinners = previousWinners.filter(name => name !== participant.name);
       }
       for (let i = 0; i < numberOfTickets; i++) {
         drawList.push(participant.name);
