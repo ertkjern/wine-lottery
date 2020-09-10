@@ -3,10 +3,11 @@
  */
 import {Injectable} from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/auth';
-import {from, Observable, of} from 'rxjs';
+import {Observable} from 'rxjs';
 import * as firebase from 'firebase';
 import {Router} from '@angular/router';
 import {AngularFirestore} from '@angular/fire/firestore';
+import {fromPromise} from 'rxjs/internal-compatibility';
 
 
 @Injectable()
@@ -16,24 +17,28 @@ export class AuthenticationService {
   private userDetails: firebase.User = null;
 
 
-  constructor(private fb: AngularFireAuth, private afs: AngularFirestore, private router: Router) {
+  constructor(
+    private fb: AngularFireAuth,
+    private afs: AngularFirestore,
+    private router: Router,
+    ) {
     this.user = fb.authState;
   }
 
   login(email: string, password: string): Observable<any> {
-    return from(this.fb.auth.signInWithEmailAndPassword(email, password));
+    return fromPromise(this.fb.signInWithEmailAndPassword(email, password));
   }
 
   register(email: string, password: string): Observable<any> {
-    return from(this.fb.auth.createUserWithEmailAndPassword(email, password));
+    return fromPromise(this.fb.createUserWithEmailAndPassword(email, password));
   }
 
   logout() {
-    this.fb.auth.signOut();
+    fromPromise(this.fb.signOut()).subscribe();
   }
 
   resetPassword(email: string): Observable<any> {
-    return from(this.fb.auth.sendPasswordResetEmail(email));
+    return fromPromise(this.fb.sendPasswordResetEmail(email));
   }
 
   isLoggedIn(): Observable<firebase.User> {
